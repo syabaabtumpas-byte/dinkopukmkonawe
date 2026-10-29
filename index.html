@@ -20,5 +20,21 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!--
+      Dibuka langsung dari komputer (file:// tanpa server): modul TSX tidak bisa
+      dijalankan browser, jadi kita tampilkan pratinjau mandiri di preview/index.html.
+      Saat situs disajikan lewat server (http/https) blok ini tidak melakukan apa-apa.
+    -->
+    <script>
+      if (location.protocol === "file:") {
+        document.title = "DINKOPUKM Kabupaten Konawe — Pratinjau Website";
+        document.body.style.cssText = "margin:0;background:#05100c";
+        var frame = document.createElement("iframe");
+        frame.src = "preview/index.html";
+        frame.title = "Pratinjau website DINKOPUKM Kabupaten Konawe";
+        frame.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0;display:block";
+        document.body.appendChild(frame);
+      }
+    </script>
   </body>
 </html>
